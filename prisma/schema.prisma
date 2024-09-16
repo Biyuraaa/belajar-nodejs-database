@@ -29,9 +29,9 @@ model Customer {
 }
 
 model Product {
-  id          String  @id
-  name        String
-  price       Int @default(0)
+  id          String  @id @db.VarChar(100)
+  name        String @db.VarChar(100)
+  price       Int @default(0) @db.Int
   stock       Int @default(0)
   category    String
   @@map("products")
@@ -45,9 +45,9 @@ model Category {
 }
 
 model Wallet {
-  id String @id
-  balance Int @default(0)
-  customer_id String @unique
+  id String @id @db.VarChar(100)
+  balance Int @default(0) @db.Int
+  customer_id String @unique @db.VarChar(100)
   customer Customer @relation(fields: [customer_id], references: [id])
   @@map("wallets")
 }
